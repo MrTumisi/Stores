@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,6 +237,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -252,6 +255,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Stores.Core\Stores.Core.csproj">
+      <Project>{6de6992f-628c-4d54-8994-1a868c4a2f9b}</Project>
+      <Name>Stores.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stores.DataAccess.InMemory\Stores.DataAccess.InMemory.csproj">
+      <Project>{116f3634-17e1-4121-8960-1cfddd33b231}</Project>
+      <Name>Stores.DataAccess.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stores.DataAccess\Stores.DataAccess.csproj">
+      <Project>{db4ed607-1e22-4ed4-a8e4-478139137755}</Project>
+      <Name>Stores.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Stores.Services\Stores.Services.csproj">
+      <Project>{22dfecc1-7ba8-4c1a-ae10-1cd5a5cf6f81}</Project>
+      <Name>Stores.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
