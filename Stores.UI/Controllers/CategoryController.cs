@@ -1,62 +1,63 @@
-﻿using System;
+﻿using Stores.Core.Models;
+using Stores.DataAccess.InMemory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Stores.Core.Models;
-using Stores.DataAccess.InMemory;
 
 namespace Stores.UI.Controllers
 {
-    public class ProductController : Controller
+    public class CategoryController : Controller
     {
-        ProductRepository context;
-        public ProductController()
+        CategoryRepository context;
+        public CategoryController()
         {
-            context = new ProductRepository();
+            context = new CategoryRepository();
         }
-        // GET: Product
+        // GET: Category
         public ActionResult Index()
         {
-            List<Product> products = context.Collection().ToList();
-            return View(products);
+            List<ProductCategory> ProductCategorys = context.Collection().ToList();
+            
+            return View();
         }
         public ActionResult Create()
         {
-            Product product = new Product();    
-            return View(product);   
+            ProductCategory ProductCategory = new ProductCategory();
+            return View(ProductCategory);
         }
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(ProductCategory ProductCategory)
         {
             if (!ModelState.IsValid)
             {
-                return View(product);
+                return View(ProductCategory);
             }
             else
             {
-                context.Insert(product);
+                context.Insert(ProductCategory);
                 context.Commit();
                 return RedirectToAction("Index");
             }
         }
         public ActionResult Edit(string Id)
         {
-            Product product = context.Find(Id);
-            if (product == null)
+            ProductCategory ProductCategory = context.Find(Id);
+            if (ProductCategory == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                return View(product);
+                return View(ProductCategory);
             }
         }
         [HttpPost]
-        public ActionResult Edit(Product product, string Id)
+        public ActionResult Edit(ProductCategory ProductCategory, string Id)
         {
-            Product prod = context.Find(Id);
-            if (prod == null)
+            ProductCategory prodC = context.Find(Id);
+            if (prodC == null)
             {
                 return HttpNotFound();
             }
@@ -64,13 +65,10 @@ namespace Stores.UI.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View(product);
+                    return View(ProductCategory);
                 }
-                prod.Description = product.Description;
-                prod.Name = product.Name;
-                prod.Price = product.Price;
-                prod.Category = product.Category;
-                prod.Image = product.Image;
+
+                prodC.Category = ProductCategory.Category;
                 context.Commit();
                 return RedirectToAction("Index");
             }
@@ -78,7 +76,7 @@ namespace Stores.UI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            Product productToDelete = context.Find(Id);
+            ProductCategory productToDelete = context.Find(Id);
             if (productToDelete == null)
             {
                 return HttpNotFound();
@@ -92,7 +90,7 @@ namespace Stores.UI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            Product productToDelete = context.Find(Id);
+            ProductCategory productToDelete = context.Find(Id);
             if (productToDelete == null)
             {
                 return HttpNotFound();
