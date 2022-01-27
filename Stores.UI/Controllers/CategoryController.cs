@@ -19,8 +19,7 @@ namespace Stores.UI.Controllers
         public ActionResult Index()
         {
             List<ProductCategory> ProductCategorys = context.Collection().ToList();
-            
-            return View();
+            return View(ProductCategorys);
         }
         public ActionResult Create()
         {
@@ -56,8 +55,8 @@ namespace Stores.UI.Controllers
         [HttpPost]
         public ActionResult Edit(ProductCategory ProductCategory, string Id)
         {
-            ProductCategory prodC = context.Find(Id);
-            if (prodC == null)
+            ProductCategory prodCat = context.Find(Id);
+            if (prodCat == null)
             {
                 return HttpNotFound();
             }
@@ -68,7 +67,7 @@ namespace Stores.UI.Controllers
                     return View(ProductCategory);
                 }
 
-                prodC.Category = ProductCategory.Category;
+                prodCat.Category = ProductCategory.Category;
                 context.Commit();
                 return RedirectToAction("Index");
             }
@@ -76,22 +75,22 @@ namespace Stores.UI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            ProductCategory productToDelete = context.Find(Id);
-            if (productToDelete == null)
+            ProductCategory categoryToDelete = context.Find(Id);
+            if (categoryToDelete == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                return View(productToDelete);
+                return View(categoryToDelete);
             }
         }
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            ProductCategory productToDelete = context.Find(Id);
-            if (productToDelete == null)
+            ProductCategory categoryToDelete = context.Find(Id);
+            if (categoryToDelete == null)
             {
                 return HttpNotFound();
             }
