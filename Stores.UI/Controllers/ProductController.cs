@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Stores.Core.Models;
+using Stores.Core.viewmodel;
 using Stores.DataAccess.InMemory;
 
 namespace Stores.UI.Controllers
@@ -11,9 +12,11 @@ namespace Stores.UI.Controllers
     public class ProductController : Controller
     {
         ProductRepository context;
+        CategoryRepository productCatrgories;
         public ProductController()
         {
             context = new ProductRepository();
+            productCatrgories = new CategoryRepository();
         }
         // GET: Product
         public ActionResult Index()
@@ -23,8 +26,10 @@ namespace Stores.UI.Controllers
         }
         public ActionResult Create()
         {
-            Product product = new Product();    
-            return View(product);   
+            ProductVM viewmodel = new ProductVM();
+            viewmodel.product = new Product();
+            viewmodel.ProductCategorys = productCatrgories.Collection();
+            return View(viewmodel);   
         }
         [HttpPost]
         public ActionResult Create(Product product)
@@ -49,7 +54,10 @@ namespace Stores.UI.Controllers
             }
             else
             {
-                return View(product);
+                ProductVM viewmodel = new ProductVM();
+                viewmodel.product = product;
+                viewmodel.ProductCategorys = productCatrgories.Collection();
+                return View(viewmodel);
             }
         }
         [HttpPost]
