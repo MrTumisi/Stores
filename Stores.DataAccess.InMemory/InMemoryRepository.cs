@@ -22,7 +22,7 @@ namespace Stores.DataAccess.InMemory
             if (items == null)
                 items = new List<T>();
         }
-        public void commit()
+        public void Commit()
         {
             cache[classname] = items;
         }

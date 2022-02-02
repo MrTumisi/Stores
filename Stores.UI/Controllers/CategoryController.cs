@@ -10,10 +10,10 @@ namespace Stores.UI.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryRepository context;
+        InMemoryRepository<ProductCategory> context;
         public CategoryController()
         {
-            context = new CategoryRepository();
+            context = new InMemoryRepository<ProductCategory>();
         }
         // GET: Category
         public ActionResult Index()
@@ -23,37 +23,37 @@ namespace Stores.UI.Controllers
         }
         public ActionResult Create()
         {
-            ProductCategory ProductCategory = new ProductCategory();
-            return View(ProductCategory);
+            ProductCategory productCategory = new ProductCategory();
+            return View(productCategory);
         }
         [HttpPost]
-        public ActionResult Create(ProductCategory ProductCategory)
+        public ActionResult Create(ProductCategory productCategory)
         {
             if (!ModelState.IsValid)
             {
-                return View(ProductCategory);
+                return View(productCategory);
             }
             else
             {
-                context.Insert(ProductCategory);
+                context.Insert(productCategory);
                 context.Commit();
                 return RedirectToAction("Index");
             }
         }
         public ActionResult Edit(string Id)
         {
-            ProductCategory ProductCategory = context.Find(Id);
-            if (ProductCategory == null)
+            ProductCategory productCategory = context.Find(Id);
+            if (productCategory == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                return View(ProductCategory);
+                return View(productCategory);
             }
         }
         [HttpPost]
-        public ActionResult Edit(ProductCategory ProductCategory, string Id)
+        public ActionResult Edit(ProductCategory productCategory, string Id)
         {
             ProductCategory prodCat = context.Find(Id);
             if (prodCat == null)
@@ -64,10 +64,10 @@ namespace Stores.UI.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return View(ProductCategory);
+                    return View(productCategory);
                 }
 
-                prodCat.Category = ProductCategory.Category;
+                prodCat.Category = productCategory.Category;
                 context.Commit();
                 return RedirectToAction("Index");
             }

@@ -11,12 +11,12 @@ namespace Stores.UI.Controllers
 {
     public class ProductController : Controller
     {
-        ProductRepository context;
-        CategoryRepository productCatrgories;
+        InMemoryRepository<Product> context;
+        InMemoryRepository<ProductCategory> productCatrgories;
         public ProductController()
         {
-            context = new ProductRepository();
-            productCatrgories = new CategoryRepository();
+            context = new InMemoryRepository<Product>();
+            productCatrgories = new InMemoryRepository<ProductCategory>();
         }
         // GET: Product
         public ActionResult Index()
