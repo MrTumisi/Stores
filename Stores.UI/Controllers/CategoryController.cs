@@ -1,4 +1,5 @@
-﻿using Stores.Core.Models;
+﻿using Stores.Core.Contracts;
+using Stores.Core.Models;
 using Stores.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,10 @@ namespace Stores.UI.Controllers
 {
     public class CategoryController : Controller
     {
-        InMemoryRepository<ProductCategory> context;
-        public CategoryController()
+        IRepository<ProductCategory> context;
+        public CategoryController(IRepository<ProductCategory> categoryContext)
         {
-            context = new InMemoryRepository<ProductCategory>();
+            context = categoryContext;
         }
         // GET: Category
         public ActionResult Index()

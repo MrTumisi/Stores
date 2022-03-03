@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32112.339
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stores.Core", "..\Stores.Core\Stores.Core.csproj", "{6DE6992F-628C-4D54-8994-1A868C4A2F9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stores.DataAccess", "..\Stores.DataAccess\Stores.DataAccess.csproj", "{DB4ED607-1E22-4ED4-A8E4-478139137755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stores.DataAccess.sql", "..\Stores.DataAccess\Stores.DataAccess.sql.csproj", "{DB4ED607-1E22-4ED4-A8E4-478139137755}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stores.DataAccess.InMemory", "..\Stores.DataAccess.InMemory\Stores.DataAccess.InMemory.csproj", "{116F3634-17E1-4121-8960-1CFDDD33B231}"
 EndProject

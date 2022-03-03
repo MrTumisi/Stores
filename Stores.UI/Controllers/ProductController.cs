@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Stores.Core.Contracts;
 using Stores.Core.Models;
 using Stores.Core.viewmodel;
 using Stores.DataAccess.InMemory;
@@ -11,12 +12,12 @@ namespace Stores.UI.Controllers
 {
     public class ProductController : Controller
     {
-        InMemoryRepository<Product> context;
-        InMemoryRepository<ProductCategory> productCatrgories;
-        public ProductController()
+        IRepository<Product> context;
+        IRepository<ProductCategory> productCatrgories;
+        public ProductController(IRepository<Product> productContext, IRepository<ProductCategory> categoryContext)
         {
-            context = new InMemoryRepository<Product>();
-            productCatrgories = new InMemoryRepository<ProductCategory>();
+            context = productContext;
+            productCatrgories = categoryContext;
         }
         // GET: Product
         public ActionResult Index()

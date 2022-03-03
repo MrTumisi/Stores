@@ -1,4 +1,5 @@
-﻿using Stores.Core.Models;
+﻿using Stores.Core.Contracts;
+using Stores.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Stores.DataAccess.InMemory
 {
-    public class InMemoryRepository<T> where T: BaseEntity
-         
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
+
 
     {
         ObjectCache cache = MemoryCache.Default;
@@ -17,7 +18,7 @@ namespace Stores.DataAccess.InMemory
         string classname;
         public InMemoryRepository()
         {
-             classname = typeof(T).Name;
+            classname = typeof(T).Name;
             items = cache[classname] as List<T>;
             if (items == null)
                 items = new List<T>();
