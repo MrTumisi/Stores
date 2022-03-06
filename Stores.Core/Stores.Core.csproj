@@ -44,10 +44,13 @@
   <ItemGroup>
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="viewmodel\ProductVM.cs" />
+    <Compile Include="Viewmodel\ProductListVM.cs" />
+    <Compile Include="Viewmodel\ProductVM.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

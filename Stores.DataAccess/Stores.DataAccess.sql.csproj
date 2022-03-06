@@ -52,7 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
+    <Compile Include="Migrations\202203061501343_Initial.cs" />
+    <Compile Include="Migrations\202203061501343_Initial.designer.cs">
+      <DependentUpon>202203061501343_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203061625173_AddCart.cs" />
+    <Compile Include="Migrations\202203061625173_AddCart.designer.cs">
+      <DependentUpon>202203061625173_AddCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -63,6 +73,14 @@
       <Project>{6DE6992F-628C-4D54-8994-1A868C4A2F9B}</Project>
       <Name>Stores.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202203061501343_Initial.resx">
+      <DependentUpon>202203061501343_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203061625173_AddCart.resx">
+      <DependentUpon>202203061625173_AddCart.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
