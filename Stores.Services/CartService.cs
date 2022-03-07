@@ -1,5 +1,6 @@
 ﻿using Stores.Core.Contracts;
 using Stores.Core.Models;
+using Stores.Core.Viewmodel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Web;
 
 namespace Stores.Services
 {
-    public class CartService
+    public class CartService : ICartService
     {
         IRepository<Product> productContext;
         IRepository<Cart> cartContext;
@@ -59,7 +60,7 @@ namespace Stores.Services
             return cart;
         }    
 
-        public void AddToCard(HttpContextBase httpContext, string productId)
+        public void AddToCart(HttpContextBase httpContext, string productId)
         {
             Cart cart = GetCart(httpContext, true);
             CartItem item = cart.CartItems.FirstOrDefault(i => i.ProductId == productId);
@@ -87,6 +88,48 @@ namespace Stores.Services
             {
                 cart.CartItems.Remove(item);
                 cartContext.Commit();
+            }
+        }
+        public List<CartItemVM> GetCartItems(HttpContextBase httpContext)
+        {
+            Cart cart = GetCart(httpContext, false);
+            if(cart != null)
+            {
+                var results = (from b in cart.CartItems
+                               join p in productContext.Collection() on b.ProductId equals p.Id
+                               select new CartItemVM()
+                               {
+                                   Id = b.Id,
+                                   Quantity = b.Quantity,
+                                   ProductName = p.Name,
+                                   Image = p.Image,
+                                   Price = p.Price
+                               }).ToList();
+                return results;
+            }
+            else
+            {
+                return new List<CartItemVM>();
+            }
+        }
+        public CartSummaryVM GetCartSummary(HttpContextBase httpContext)
+        {
+            Cart cart = GetCart(httpContext, false);
+            CartSummaryVM model = new CartSummaryVM(0, 0);
+            if (cart != null)
+            {
+                int? cartCount = (from item in cart.CartItems
+                                  select item.Quantity).Sum();
+                decimal? cartTotal = (from item in cart.CartItems
+                                      join p in productContext.Collection() on item.ProductId equals p.Id
+                                      select item.Quantity * p.Price).Sum();
+                model.CartCount = cartCount ?? 0;
+                model.CartTotal = cartTotal ?? decimal.Zero;
+                return model;
+            }
+            else
+            {
+                return model;
             }
         }
     }
