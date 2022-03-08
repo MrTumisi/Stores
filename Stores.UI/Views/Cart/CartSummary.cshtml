@@ -1,0 +1,9 @@
+﻿@model Stores.Core.Viewmodel.CartSummaryVM
+
+<ul class="navber navbar-nav text-right">
+    <li><a href="@Url.Action("Index", "Cart")">Cart
+        <span class="badge bg-info">@Model.CartCount</span>
+        </a></li>
+    <li><a href="@Url.Action("Index", "Cart")">@String.Format("{0:c}", Model.CartTotal)</a></li>
+</ul>
+

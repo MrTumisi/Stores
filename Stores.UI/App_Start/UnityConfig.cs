@@ -2,6 +2,7 @@ using Stores.Core.Contracts;
 using Stores.Core.Models;
 using Stores.DataAccess;
 using Stores.DataAccess.InMemory;
+using Stores.Services;
 using System;
 
 using Unity;
@@ -48,6 +49,9 @@ namespace Stores.UI
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
             container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
+            container.RegisterType<IRepository<Cart>, SQLRepository<Cart>>();
+            container.RegisterType<IRepository<CartItem>, SQLRepository<CartItem>>();
+            container.RegisterType<ICartService, CartService>();
         }
     }
 } 
