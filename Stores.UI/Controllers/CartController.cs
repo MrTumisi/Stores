@@ -1,4 +1,5 @@
 ﻿using Stores.Core.Contracts;
+using Stores.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,11 @@ namespace Stores.UI.Controllers
     public class CartController : Controller
     {
         ICartService cartService;
-        public CartController(ICartService CartService)
+        IOrderService orderService;
+        public CartController(ICartService CartService, IOrderService OrderService)
         {
             this.cartService = CartService;
+            this.orderService = OrderService;
         }
         // GET: Cart
         public ActionResult Index()
@@ -37,6 +40,27 @@ namespace Stores.UI.Controllers
         {
             var cartSummary = cartService.GetCartSummary(this.HttpContext);
             return PartialView(cartSummary);
+        }
+        [HttpPost]
+        public ActionResult Checkout()
+        {
+            return View();
+        }
+        public ActionResult Checkout(Order order)
+        {
+            var cartItems = cartService.GetCartItems(this.HttpContext);
+            order.OrderStatus = "Order Created";
+            //Process Payment
+
+            order.OrderStatus = "Payment Processed";
+            orderService.CreateOrder(order, cartItems);
+            cartService.ClearCart(this.HttpContext);
+            return RedirectToAction("Thankyou", new { OrderId = order.Id });
+        }
+        public ActionResult Thankyou(string OrderId)
+        {
+            ViewBag.OrderId = OrderId;
+            return View();
         }
     }
 }

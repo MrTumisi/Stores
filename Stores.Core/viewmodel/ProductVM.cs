@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stores.Core.viewmodel
+namespace Stores.Core.Viewmodel
 {
     public class ProductVM
     {

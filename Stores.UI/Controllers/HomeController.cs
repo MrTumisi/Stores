@@ -3,7 +3,7 @@ using Stores.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Stores.Core.viewmodel;
+using Stores.Core.Viewmodel;
 
 namespace Stores.UI.Controllers
 {

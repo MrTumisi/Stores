@@ -60,6 +60,14 @@
     <Compile Include="Migrations\202203061625173_AddCart.designer.cs">
       <DependentUpon>202203061625173_AddCart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203080639519_AddCustomer.cs" />
+    <Compile Include="Migrations\202203080639519_AddCustomer.designer.cs">
+      <DependentUpon>202203080639519_AddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203110411197_AddedOrders.cs" />
+    <Compile Include="Migrations\202203110411197_AddedOrders.designer.cs">
+      <DependentUpon>202203110411197_AddedOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -80,6 +88,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202203061625173_AddCart.resx">
       <DependentUpon>202203061625173_AddCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203080639519_AddCustomer.resx">
+      <DependentUpon>202203080639519_AddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203110411197_AddedOrders.resx">
+      <DependentUpon>202203110411197_AddedOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

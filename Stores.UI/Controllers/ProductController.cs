@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Stores.Core.Contracts;
 using Stores.Core.Models;
-using Stores.Core.viewmodel;
+using Stores.Core.Viewmodel;
 
 namespace Stores.UI.Controllers
 {
