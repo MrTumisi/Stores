@@ -1,0 +1,17 @@
+﻿@{ 
+    ViewBag.title = "Dashboard";
+}
+<h2>Dashboard</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="list-group ">
+            @Html.ActionLink("Products, Index", "Product", null, new { @class = "list-group-item list-group-item-action" })
+            @Html.ActionLink("Categorys, Index", "Category", null, new { @class = "list-group-item list-group-item-action" })
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="list-group">
+            @Html.ActionLink("Orders, Index", "Order", null, new { @class = "list-group-item list-group-item-action" })
+        </div>
+    </div>
+</div>

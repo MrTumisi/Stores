@@ -12,5 +12,8 @@ namespace Stores.Core.Contracts
 
     {
         void CreateOrder(Order baseOrder, List<CartItemVM> cartItems);
+        List<Order> GetOrderslist();
+        Order GetOrder(string Id);
+        void UpdateOrder(Order updateOrder);
     }
 }
